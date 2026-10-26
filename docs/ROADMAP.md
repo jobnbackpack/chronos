@@ -14,23 +14,23 @@ Die Entwicklung von **Chronos** gliedert sich in 4 aufeinander aufbauende Phasen
 ---
 
 ## Phase 2: Tech-Scaffolding & Daten-Pipeline
-- [ ] Astro + Svelte 5 + Tailwind CSS Projekt initialisieren
-- [ ] Content Collections (`src/content/config.ts`) mit Zod-Validierung exakt nach `DATA_SCHEMA.md` einrichten
-- [ ] Beispieldatensatz anlegen:
-  - Alle Haupt-Epochen (B1–B11 und K1–K9) als Markdown-Gerüst erstellen
-  - 10–15 exemplarische Events (über alle 3 Zoom-Level verteilt) mit echten Quellen und Bibelstellen anlegen
-- [ ] Automatischen Daten-Check-Befehl (`npm run validate`) einrichten
+- [x] Astro + Svelte 5 + Tailwind CSS Projekt initialisieren
+- [x] Content Collections (`src/content.config.ts`) mit Zod-Validierung exakt nach `DATA_SCHEMA.md` einrichten
+- [x] Beispieldatensatz anlegen:
+  - Alle Haupt-Epochen (Bibel, Kirchengeschichte, Weltgeschichte) als Markdown-Gerüst erstellen
+  - 14 exemplarische Events (über alle 3 Zoom-Level verteilt) mit echten Quellen und Bibelstellen anlegen
+- [x] Automatischen Daten-Check-Befehl (`npm run validate`) einrichten
 
 ---
 
 ## Phase 3: Interaktive Timeline-Engine (MVP)
-- [ ] **Zoom- & Pan-Controller:**
+- [x] **Zoom- & Pan-Controller:**
   - Desktop: Horizontale Achse mit Mausrad-Zoom & Drag-Navigation
   - Mobile: Vertikale Achse mit Scroll & Tap-to-Zoom
-- [ ] **Semantischer 3-Stufen-Zoom:** Flüssiger Übergang zwischen Makro (Epochen), Meso (Strömungen) und Mikro (Einzel-Events)
-- [ ] **Unschärfe-Rendering:** Visuelle Darstellung für `circa`- und `disputed`-Daten
-- [ ] **Track-Filter:** Ein-/Ausblenden von *Bibel*, *Kirchengeschichte* und *Weltgeschichte*
-- [ ] **Detail-Drawer (Side-Panel):** Anzeige von Markdown-Text, Bibelstellen, Literaturquellen, Bildern/Videos und Querverweisen
+- [x] **Semantischer 3-Stufen-Zoom:** Flüssiger Übergang zwischen Makro (Epochen), Meso (Strömungen) und Mikro (Einzel-Events)
+- [x] **Unschärfe-Rendering:** Visuelle Darstellung für `circa`- und `disputed`-Daten
+- [x] **Track-Filter:** Ein-/Ausblenden von *Bibel*, *Kirchengeschichte* und *Weltgeschichte*
+- [x] **Detail-Drawer (Side-Panel):** Anzeige von Markdown-Text, Bibelstellen, Literaturquellen, Bildern/Videos und Querverweisen
 
 ---
 
