@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TimelineExplorer from '../components/timeline/TimelineExplorer.svelte';
+import type { EpochItem, EventItem } from '../types/timeline';
+
+const rawEpochs = await getCollection('epochs');
+const rawEvents = await getCollection('events');
+
+const epochs: EpochItem[] = rawEpochs.map((entry) => ({
+  ...entry.data,
+  bodyHtml: entry.rendered?.html ?? '',
+}));
+
+const events: EventItem[] = rawEvents.map((entry) => ({
+  ...entry.data,
+  bodyHtml: entry.rendered?.html ?? '',
+}));
+---
+
+<BaseLayout>
+  <TimelineExplorer client:load epochs={epochs} events={events} />
+</BaseLayout>

@@ -29,9 +29,24 @@ Das Projekt ermöglicht es, aus der Vogelperspektive (Makro-Epochen) nahtlos in 
 
 ---
 
+## Lokale Ausführung (Quickstart)
+
+```bash
+# 1. Abhängigkeiten installieren
+pnpm install
+
+# 2. Lokalen Entwicklungsserver starten (http://localhost:4321)
+pnpm dev
+
+# 3. Markdown-Daten gegen Zod-Schema prüfen & statischen Build testen
+pnpm build
+```
+
+---
+
 ## Dokumentation
 
-Das Projekt befindet sich aktuell in **Phase 1 (Konzeption & Daten-Architektur)**. Alle Details sind in folgenden Dokumenten festgehalten:
+Alle Architektur- und Daten-Konzepte sind in folgenden Dokumenten festgehalten:
 
 - [Architektur & Zoom-Logik](docs/ARCHITECTURE.md)
 - [Daten-Schema & Frontmatter-Spezifikation](docs/DATA_SCHEMA.md)
