@@ -231,12 +231,12 @@
 
   // Assign vertical stagger lanes so nearby event pills on the axis never collide
   let positionedEvents = $derived.by(() => {
-    const laneRightEdge = [-9999, -9999, -9999];
+    const laneRightEdge = [-9999, -9999, -9999, -9999];
     const worldLaneRightEdge = [-9999, -9999];
 
     return visibleEvents.map((ev) => {
       const x = yearToPx(ev.date.start);
-      const pillWidth = 205;
+      const pillWidth = 198;
 
       if (ev.track === 'world-context') {
         let lane = 0;
@@ -244,16 +244,22 @@
         worldLaneRightEdge[lane] = x + pillWidth;
         return { ev, x, lane, isWorld: true };
       } else {
-        let lane = 0;
+        let bestLane = 0;
+        let minOverlap = Infinity;
         for (let i = 0; i < laneRightEdge.length; i++) {
           if (x >= laneRightEdge[i]) {
-            lane = i;
+            bestLane = i;
+            minOverlap = 0;
             break;
           }
-          lane = (i + 1) % laneRightEdge.length;
+          const overlap = laneRightEdge[i] - x;
+          if (overlap < minOverlap) {
+            minOverlap = overlap;
+            bestLane = i;
+          }
         }
-        laneRightEdge[lane] = x + pillWidth;
-        return { ev, x, lane, isWorld: false };
+        laneRightEdge[bestLane] = x + pillWidth;
+        return { ev, x, lane: bestLane, isWorld: false };
       }
     });
   });
@@ -613,15 +619,15 @@
       class="relative h-[580px] shrink-0"
       style="width: {canvasWidth}px;"
     >
-      <!-- 1. CENTRAL HORIZONTAL TIME AXIS LINE (AT Y = 310px) -->
-      <div class="absolute left-16 right-16 top-[310px] h-px bg-zinc-800"></div>
+      <!-- 1. CENTRAL HORIZONTAL TIME AXIS LINE (AT Y = 330px) -->
+      <div class="absolute left-16 right-16 top-[330px] h-px bg-zinc-800"></div>
 
       <!-- 2. ARCHITECTURAL YEAR MARKERS ON THE AXIS -->
       {#each majorAxisTicks as tick}
         {@const x = yearToPx(tick.year)}
         {#if tick.major || zoomFactor >= 1.45}
           <div
-            class="absolute top-[310px] -translate-x-1/2 pointer-events-none transition-opacity duration-200"
+            class="absolute top-[330px] -translate-x-1/2 pointer-events-none transition-opacity duration-200"
             style="left: {x}px; opacity: {tick.major ? 1 : Math.min(1, (zoomFactor - 1.35) * 2)};"
           >
             <div class="w-px {tick.major ? 'h-4 -mt-2 bg-zinc-500' : 'h-2.5 -mt-1 bg-zinc-700'} mx-auto"></div>
@@ -642,14 +648,19 @@
         {@const right = yearToPx(ep.date.end)}
         {@const width = Math.max(155, right - left - 8)}
         {@const isBible = ep.track === 'bible'}
+        {@const isLevel1Overlap = zoomLevel === 1 && ep.id === 'jesus-and-apostles' && activeTracks.bible}
 
         <button
           type="button"
           onclick={() => handleEpochClick(ep)}
           style="left: {left}px; width: {width}px;"
           class="group absolute text-left transition-[top,height,background-color,border-color] duration-300 cursor-pointer rounded-xl border backdrop-blur-sm flex flex-col justify-between overflow-hidden {zoomLevel === 1
-            ? 'top-[135px] h-[142px] p-4 bg-zinc-900/60 hover:bg-zinc-900/95 border-zinc-800/90 hover:border-zinc-700'
-            : 'top-[32px] h-[64px] px-3.5 py-2.5 bg-zinc-900/40 hover:bg-zinc-900/85 border-zinc-800/60 hover:border-zinc-700'} {ep.date.precision === 'disputed'
+            ? isLevel1Overlap
+              ? 'top-[22px] h-[118px] p-3.5 bg-zinc-900/60 hover:bg-zinc-900/95 border-zinc-800/90 hover:border-zinc-700'
+              : 'top-[152px] h-[142px] p-4 bg-zinc-900/60 hover:bg-zinc-900/95 border-zinc-800/90 hover:border-zinc-700'
+            : isBible
+              ? 'top-[12px] h-[44px] px-3 py-1.5 bg-zinc-900/35 hover:bg-zinc-900/85 border-zinc-800/60 hover:border-zinc-700'
+              : 'top-[62px] h-[44px] px-3 py-1.5 bg-zinc-900/45 hover:bg-zinc-900/85 border-zinc-800/60 hover:border-zinc-700'} {ep.date.precision === 'disputed'
             ? 'border-dashed'
             : ''}"
         >
@@ -668,8 +679,8 @@
           <!-- Epoch Title: Full multi-line on Level 1 -->
           <h2
             class="font-semibold text-zinc-100 tracking-tight {zoomLevel === 1
-              ? 'text-[15px] leading-snug line-clamp-2 my-auto pt-1'
-              : 'text-xs truncate mt-0.5'}"
+              ? 'text-[14px] leading-snug line-clamp-2 my-auto pt-0.5'
+              : 'text-xs truncate'}"
           >
             {ep.title}
           </h2>
@@ -683,9 +694,9 @@
         </button>
 
         <!-- Vertical connector from Epoch to the Axis Line on Level 1 -->
-        {#if zoomLevel === 1}
+        {#if zoomLevel === 1 && !isLevel1Overlap}
           <div
-            class="absolute top-[277px] h-[33px] w-px bg-zinc-800/70 pointer-events-none"
+            class="absolute top-[294px] h-[36px] w-px bg-zinc-800/70 pointer-events-none"
             style="left: {left + 18}px;"
           ></div>
         {/if}
@@ -706,7 +717,7 @@
             }
           }}
           style="left: {left}px; width: {width}px;"
-          class="absolute top-[370px] h-[50px] px-3.5 py-2 rounded-lg border border-zinc-900 bg-zinc-900/30 hover:bg-zinc-900/70 hover:border-zinc-800 transition-colors text-left flex flex-col justify-center cursor-pointer group"
+          class="absolute top-[386px] h-[48px] px-3.5 py-2 rounded-lg border border-zinc-900 bg-zinc-900/30 hover:bg-zinc-900/70 hover:border-zinc-800 transition-colors text-left flex flex-col justify-center cursor-pointer group"
         >
           <span class="text-[10px] font-mono text-zinc-500 group-hover:text-zinc-400">
             Kontext · {wep.date.display}
@@ -721,12 +732,12 @@
       {#each positionedEvents as item (item.ev.id)}
         {@const isBible = item.ev.track === 'bible'}
         {@const isWorld = item.isWorld}
-        {@const topPx = isWorld ? 436 + item.lane * 52 : 122 + item.lane * 54}
-        {@const stemHeight = isWorld ? topPx - 310 : 310 - (topPx + 40)}
+        {@const topPx = isWorld ? 450 + item.lane * 48 : 118 + item.lane * 48}
+        {@const stemHeight = isWorld ? topPx - 330 : 330 - (topPx + 38)}
 
-        <!-- Dot directly on the Central Time Axis (y = 310px) -->
+        <!-- Dot directly on the Central Time Axis (y = 330px) -->
         <div
-          class="absolute top-[310px] -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full border-2 border-zinc-950 pointer-events-none z-10 {isWorld
+          class="absolute top-[330px] -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full border-2 border-zinc-950 pointer-events-none z-10 {isWorld
             ? 'bg-zinc-500'
             : isBible
               ? 'bg-amber-400'
@@ -738,7 +749,7 @@
         {#if stemHeight > 0}
           <div
             class="absolute w-px bg-zinc-800/80 pointer-events-none"
-            style="left: {item.x}px; top: {isWorld ? 310 : topPx + 40}px; height: {stemHeight}px;"
+            style="left: {item.x}px; top: {isWorld ? 330 : topPx + 38}px; height: {stemHeight}px;"
           ></div>
         {/if}
 
@@ -747,7 +758,7 @@
           type="button"
           onclick={(e) => openEventModal(item.ev, e)}
           style="left: {item.x - 12}px; top: {topPx}px;"
-          class="group absolute w-[195px] h-[40px] px-3 rounded-lg border bg-zinc-900/95 hover:bg-zinc-800 border-zinc-800 hover:border-zinc-600 transition-colors text-left flex items-center gap-2.5 shadow-sm cursor-pointer z-10"
+          class="group absolute w-[190px] h-[38px] px-3 rounded-lg border bg-zinc-900/95 hover:bg-zinc-800 border-zinc-800 hover:border-zinc-600 transition-colors text-left flex items-center gap-2.5 shadow-sm cursor-pointer z-10"
         >
           <span
             class="w-1.5 h-1.5 rounded-full shrink-0 {isWorld

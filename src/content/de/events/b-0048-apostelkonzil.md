@@ -2,9 +2,9 @@
 id: "0048-apostelkonzil"
 title: "Apostelkonzil in Jerusalem & Missionsreisen des Paulus"
 category: "council"
-track: "bible"
-minZoomLevel: 3
-epoch: "life-of-jesus"
+track: "church-history"
+minZoomLevel: 2
+epoch: "jesus-and-apostles"
 date:
   start: 48
   end: 49
