@@ -1,21 +1,21 @@
 ---
 id: "life-of-jesus"
-title: "Leben Jesu & Urkirche"
-subtitle: "Evangelien und Apostolisches Zeitalter"
+title: "Evangelien & Neues Testament"
+subtitle: "Erfüllung der Verheißungen & Entstehung der NT-Schriften"
 track: "bible"
 level: 1
 parentEpoch: null
 order: 10
 date:
-  start: -4
-  end: 100
+  start: -6
+  end: 95
   precision: "circa"
-  display: "ca. 4 v. Chr. – 100 n. Chr."
+  display: "ca. 6 v. Chr. – 95 n. Chr."
 style:
   color: "#2563eb"
-  scaleWeight: 1.8
-summary: "Geburt, Wirken, Tod und Auferstehung Jesu Christi sowie die Entstehung der ersten Gemeinden ab Pfingsten und Abfassung des Neuen Testaments."
+  scaleWeight: 1.5
+summary: "Menschwerdung, Dienst, Kreuzigung und Auferstehung Jesu Christi sowie die Abfassung der vier Evangelien, der Apostelgeschichte, der Briefe und der Offenbarung."
 ---
 
 ## Überblick
-Die Zeitenwende: Im römisch besetzten Judäa und Galiläa verkündet **Jesus von Nazareth** das Anbrechen des Reiches Gottes. Nach seiner Kreuzigung und Auferstehung unter Pontius Pilatus (ca. 30/33 n. Chr.) entsteht an Pfingsten die Urgemeinde, die das Evangelium bis nach Rom trägt.
+Im Neuen Testament laufen alle Verheißungslinien des Alten Bundes (Abrahamsbund, Exodus/Passah, Davidsbund, Neuer Bund bei Jeremia 31) in der Person **Jesu von Nazareth** zusammen. Zwischen ca. 48 und 95 n. Chr. entstehen unter Führung des Heiligen Geistes die 27 Bücher des Neuen Testaments.
