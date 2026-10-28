@@ -7,15 +7,15 @@ level: 1
 parentEpoch: null
 order: 7
 date:
-  start: 1648
+  start: 1789
   end: 2026
   precision: "exact"
-  display: "1648 – Heute"
+  display: "1789 – Heute"
 style:
-  color: "#0284c7"
+  color: "#4f46e5"
   scaleWeight: 1.5
-summary: "Vom Pietismus und den großen Erweckungsbewegungen über das Jahrhundert der Weltmission bis zur heutigen globalen Christenheit."
+summary: "Von der Französischen Revolution (1789) und dem großen Jahrhundert der Weltmission über die totalitären Krisen des 20. Jahrhunderts bis zur heutigen globalen Christenheit."
 ---
 
 ## Überblick
-Nach den Konfessionskriegen entstehen im **Pietismus** (Spener, Francke, Zinzendorf) und im englischen **Great Awakening** (Wesley, Whitefield) neue Aufbrüche persönlicher Frömmigkeit, Diakonie und weltweiter Mission, die das Christentum im 19. und 20. Jahrhundert zu einer wahrhaft globalen Bewegung machen.
+Seit dem Umbruch von **1789** erlebt das Christentum im 19. Jahrhundert das „Große Jahrhundert der Weltmission“ (William Carey, Hudson Taylor, David Livingstone) und wächst im 20. und 21. Jahrhundert – trotz Säkularisierung und totalitärer Ideologien – zu einer wahrhaft globalen Bewegung mit Schwerpunkt im Globalen Süden.
